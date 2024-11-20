@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import { Button } from "../common/Button";
+import Button from "../common/Button";
 
 interface WishlistVotingProps {
   itemId: string;

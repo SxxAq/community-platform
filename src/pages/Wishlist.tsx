@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-//import WishlistItem from "../components/wishlist/WishlistItem";
-//import WishlistVoting from "../components/wishlist/WishlistVoting";
+import WishlistItem from "../components/wishlist/WishlistItem";
+import WishlistVoting from "../components/wishlist/WishlistVoting";
 
 const Wishlist: React.FC = () => {
   const [wishlistItems, setWishlistItems] = useState([

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useResource } from "../../hooks/useResource";
 import ResourceCard from "./ResourceCard";
 import Input from "../common/Input";
-import { Button } from "../common/Button";
+import Button from "../common/Button";
 
 interface Resource {
   id: string;

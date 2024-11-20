@@ -39,34 +39,25 @@ const Footer: React.FC = () => {
             <h4 className="text-md font-semibold mb-2">Connect</h4>
             <ul className="text-sm">
               <li>
-                <a
-                  href="https://twitter.com/educommunity"
-                  className="hover:underline"
-                >
+                <a href="https://twitter.com/" className="hover:underline">
                   Twitter
                 </a>
               </li>
               <li>
-                <a
-                  href="https://facebook.com/educommunity"
-                  className="hover:underline"
-                >
+                <a href="https://facebook.com/" className="hover:underline">
                   Facebook
                 </a>
               </li>
               <li>
                 <a
-                  href="https://linkedin.com/company/educommunity"
+                  href="https://linkedin.com/company/"
                   className="hover:underline"
                 >
                   LinkedIn
                 </a>
               </li>
               <li>
-                <a
-                  href="https://instagram.com/educommunity"
-                  className="hover:underline"
-                >
+                <a href="https://instagram.com/" className="hover:underline">
                   Instagram
                 </a>
               </li>

@@ -13,11 +13,16 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ allowedRoles }) => {
     return <Navigate to="/login" replace />;
   }
 
-  if (user && allowedRoles.includes(user.role)) {
+  if (user) {
     return <Outlet />;
   } else {
     return <Navigate to="/unauthorized" replace />;
   }
+  //if (user && allowedRoles.includes(user.role)) {
+  //  return <Outlet />;
+  //} else {
+  //  return <Navigate to="/unauthorized" replace />;
+  //}
 };
 
 export default PrivateRoute;
