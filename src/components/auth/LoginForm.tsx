@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ interface LoginFormData {
 }
 
 const LoginForm: React.FC = () => {
+  const [error, setError] = useState<string>("");
   const {
     register,
     handleSubmit,
@@ -22,7 +23,7 @@ const LoginForm: React.FC = () => {
       await login(data.email, data.password);
       navigate("/");
     } catch (error) {
-      console.error("Login failed:", error);
+      setError(error instanceof Error ? error.message : "Login failed");
     }
   };
 
@@ -34,6 +35,11 @@ const LoginForm: React.FC = () => {
             Sign in to your account
           </h2>
         </div>
+        {error && (
+          <div className="rounded-md bg-red-50 p-4">
+            <div className="text-sm text-red-700">{error}</div>
+          </div>
+        )}
         <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -73,32 +79,6 @@ const LoginForm: React.FC = () => {
                   {errors.password.message}
                 </p>
               )}
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-              />
-              <label
-                htmlFor="remember-me"
-                className="ml-2 block text-sm text-gray-900"
-              >
-                Remember me
-              </label>
-            </div>
-
-            <div className="text-sm">
-              <a
-                href="#"
-                className="font-medium text-blue-600 hover:text-blue-500"
-              >
-                Forgot your password?
-              </a>
             </div>
           </div>
 

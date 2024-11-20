@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ interface RegisterFormData {
 }
 
 const RegisterForm: React.FC = () => {
+  const [error, setError] = useState<string>("");
   const {
     register,
     handleSubmit,
@@ -25,7 +26,7 @@ const RegisterForm: React.FC = () => {
       await registerUser(data.username, data.email, data.password);
       navigate("/");
     } catch (error) {
-      console.error("Registration failed:", error);
+      setError(error instanceof Error ? error.message : "Registration failed");
     }
   };
 
@@ -37,6 +38,11 @@ const RegisterForm: React.FC = () => {
             Create your account
           </h2>
         </div>
+        {error && (
+          <div className="rounded-md bg-red-50 p-4">
+            <div className="text-sm text-red-700">{error}</div>
+          </div>
+        )}
         <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
