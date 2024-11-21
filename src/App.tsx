@@ -28,9 +28,10 @@ const App: React.FC = () => {
                 <Route
                   path="/profile"
                   element={
-                    <PrivateRoute allowedRoles={["admin", "tutor", "student"]}>
-                      <Profile />
-                    </PrivateRoute>
+                    //<PrivateRoute allowedRoles={["admin", "tutor", "student"]}>
+                    //  <Profile />
+                    //</PrivateRoute>
+                    <Profile />
                   }
                 />
                 <Route path="/events" element={<Events />} />

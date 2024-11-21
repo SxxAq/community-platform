@@ -34,12 +34,14 @@ const Wishlist: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Feature Wishlist</h1>
+      <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
+        Feature Wishlist
+      </h1>
       <div className="space-y-6">
         {wishlistItems.map((item) => (
           <div
             key={item.id}
-            className="flex items-center space-x-4 bg-white shadow rounded-lg p-6"
+            className="flex items-center space-x-4 bg-white dark:bg-gray-800 shadow rounded-lg p-6"
           >
             <WishlistVoting
               itemId={item.id}
