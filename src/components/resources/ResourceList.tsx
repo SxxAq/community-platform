@@ -23,8 +23,8 @@ const ResourceList: React.FC = () => {
     );
   });
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (isLoading) return <div className="text-foreground">Loading...</div>;
+  if (error) return <div className="text-destructive">Error: {error}</div>;
 
   return (
     <div className="space-y-4">
@@ -38,7 +38,7 @@ const ResourceList: React.FC = () => {
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="border rounded px-2 py-1"
+          className="border rounded px-2 py-1 bg-background text-foreground"
         >
           <option value="">All Categories</option>
           {/* Add category options here */}

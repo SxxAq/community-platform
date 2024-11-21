@@ -16,7 +16,6 @@ const UserList: React.FC = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        // Replace this with your actual API call
         const response = await fetch("/api/users");
         if (!response.ok) {
           throw new Error("Failed to fetch users");
@@ -33,41 +32,38 @@ const UserList: React.FC = () => {
     fetchUsers();
   }, []);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (isLoading) return <div className="text-center p-4">Loading...</div>;
+  if (error)
+    return <div className="text-center text-red-500 p-4">Error: {error}</div>;
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h2 className="text-2xl font-bold mb-4">User List</h2>
-      <div className="bg-white shadow overflow-hidden sm:rounded-md">
-        <ul className="divide-y divide-gray-200">
-          {users.map((user) => (
-            <li key={user.id}>
-              <Link to={`/users/${user.id}`} className="block hover:bg-gray-50">
-                <div className="px-4 py-4 sm:px-6">
-                  <div className="flex items-center justify-between">
-                    <p className="text-sm font-medium text-blue-600 truncate">
-                      {user.username}
-                    </p>
-                    <div className="ml-2 flex-shrink-0 flex">
-                      <p className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                        {user.role}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mt-2 sm:flex sm:justify-between">
-                    <div className="sm:flex">
-                      <p className="flex items-center text-sm text-gray-500">
-                        {user.email}
-                      </p>
-                    </div>
-                  </div>
+    <div className="max-w-4xl mx-auto px-4 py-8">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800">User List</h2>
+      <ul className="bg-white shadow-md rounded-lg overflow-hidden">
+        {users.map((user) => (
+          <li
+            key={user.id}
+            className="border-b border-gray-200 last:border-b-0"
+          >
+            <Link
+              to={`/users/${user.id}`}
+              className="block hover:bg-gray-50 transition duration-150 ease-in-out"
+            >
+              <div className="px-6 py-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-lg font-medium text-blue-600">
+                    {user.username}
+                  </span>
+                  <span className="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                    {user.role}
+                  </span>
                 </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+                <p className="mt-1 text-sm text-gray-600">{user.email}</p>
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

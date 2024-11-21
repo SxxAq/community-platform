@@ -18,9 +18,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({ postId }) => {
   const { user } = useAuth();
 
   useEffect(() => {
-    // Fetch comments for the post
     const fetchComments = async () => {
-      // Replace with your actual API call
       const response = await fetch(`/api/posts/${postId}/comments`);
       const data = await response.json();
       setComments(data);
@@ -33,7 +31,6 @@ const CommentSection: React.FC<CommentSectionProps> = ({ postId }) => {
     e.preventDefault();
     if (!user) return;
 
-    // Replace with your actual API call
     const response = await fetch(`/api/posts/${postId}/comments`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -48,29 +45,31 @@ const CommentSection: React.FC<CommentSectionProps> = ({ postId }) => {
   };
 
   return (
-    <div className="mt-4">
-      <h3 className="text-lg font-semibold mb-2">Comments</h3>
-      {comments.map((comment) => (
-        <div key={comment.id} className="bg-gray-100 p-3 rounded mb-2">
-          <p className="text-sm font-semibold">{comment.author}</p>
-          <p className="text-sm">{comment.content}</p>
-          <p className="text-xs text-gray-500 mt-1">
-            {new Date(comment.createdAt).toLocaleString()}
-          </p>
-        </div>
-      ))}
+    <div className="mt-6">
+      <h3 className="text-lg font-semibold mb-4 text-gray-800">Comments</h3>
+      <div className="space-y-4">
+        {comments.map((comment) => (
+          <div key={comment.id} className="bg-gray-50 p-4 rounded-lg">
+            <p className="font-semibold text-gray-800">{comment.author}</p>
+            <p className="text-gray-600 mt-1">{comment.content}</p>
+            <p className="text-xs text-gray-400 mt-2">
+              {new Date(comment.createdAt).toLocaleString()}
+            </p>
+          </div>
+        ))}
+      </div>
       {user && (
-        <form onSubmit={handleSubmitComment} className="mt-4">
+        <form onSubmit={handleSubmitComment} className="mt-6">
           <textarea
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Write a comment..."
             rows={3}
           />
           <button
             type="submit"
-            className="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            className="mt-2 py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
             Post Comment
           </button>

@@ -9,11 +9,11 @@ const Button: React.FC<ButtonProps> = ({
   children,
   variant = "primary",
   size = "md",
-  className,
+  className = "",
   ...props
 }) => {
   const baseStyles =
-    "font-semibold rounded focus:outline-none focus:ring-2 focus:ring-offset-2";
+    "font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-200";
 
   const variantStyles = {
     primary: "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500",

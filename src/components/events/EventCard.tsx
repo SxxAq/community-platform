@@ -21,25 +21,25 @@ const EventCard: React.FC<EventCardProps> = ({
   onRSVP,
 }) => {
   return (
-    <div className="bg-white shadow rounded-lg p-6 mb-6">
+    <div className="bg-card text-card-foreground shadow rounded-lg p-6 mb-6">
       <h3 className="font-bold text-xl mb-2">{title}</h3>
-      <p className="text-gray-600 mb-4">{description}</p>
+      <p className="text-muted-foreground mb-4">{description}</p>
       <div className="flex justify-between items-center mb-4">
         <div>
-          <p className="text-gray-700">
+          <p className="text-foreground">
             <strong>Date:</strong> {format(new Date(date), "PPP")}
           </p>
-          <p className="text-gray-700">
+          <p className="text-foreground">
             <strong>Location:</strong> {location}
           </p>
         </div>
-        <p className="text-gray-700">
+        <p className="text-foreground">
           <strong>Attendees:</strong> {attendees}
         </p>
       </div>
       <button
         onClick={() => onRSVP(id)}
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300"
+        className="bg-primary text-primary-foreground px-4 py-2 rounded hover:bg-primary/90 transition duration-300"
       >
         RSVP
       </button>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { X } from "lucide-react";
 
 interface ModalProps {
   isOpen: boolean;
@@ -24,15 +23,28 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
 
   return (
     <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-40 flex items-center justify-center">
-      <div className="relative bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg">
+      <div className="relative bg-white w-11/12 md:max-w-md mx-auto rounded-lg shadow-lg">
         <div className="flex justify-between items-center border-b p-4">
-          <h3 className="text-lg font-semibold">{title}</h3>
+          <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
           <button
             onClick={handleClose}
-            className="text-black close-modal"
+            className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
             aria-label="Close modal"
           >
-            <X size={24} />
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
           </button>
         </div>
         <div className="p-4">{children}</div>

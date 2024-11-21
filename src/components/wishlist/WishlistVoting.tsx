@@ -30,7 +30,7 @@ const WishlistVoting: React.FC<WishlistVotingProps> = ({
       >
         <ChevronUp className="w-4 h-4" />
       </Button>
-      <span className="font-semibold text-lg">{votes}</span>
+      <span className="font-semibold text-lg text-foreground">{votes}</span>
       <Button
         variant="outline"
         size="sm"
