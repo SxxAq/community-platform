@@ -1,75 +1,86 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { Home, Calendar, Book, Users, Star, Settings } from "lucide-react";
+import {
+  FiHome,
+  FiCalendar,
+  FiBook,
+  FiUsers,
+  FiStar,
+  FiSettings,
+  FiX,
+} from "react-icons/fi";
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isOpen: boolean;
+  closeSidebar: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
   const { user } = useAuth();
 
+  const sidebarClasses = `fixed inset-y-0 left-0 z-30 w-64 bg-white dark:bg-gray-800 text-gray-900 dark:text-white transform ${
+    isOpen ? "translate-x-0" : "-translate-x-full"
+  } transition-transform duration-300 ease-in-out md:translate-x-0 md:static`;
+
   return (
-    <aside className="bg-gray-800 text-white w-64 min-h-screen p-4">
-      <nav>
+    <aside className={sidebarClasses}>
+      <div className="flex justify-between items-center p-4 md:hidden">
+        <h2 className="text-xl font-semibold">Menu</h2>
+        <button onClick={closeSidebar}>
+          <FiX size={24} />
+        </button>
+      </div>
+      <nav className="p-4">
         <ul className="space-y-2">
-          <li>
-            <Link
-              to="/"
-              className="flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
-            >
-              <Home size={20} />
-              <span>Home</span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/events"
-              className="flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
-            >
-              <Calendar size={20} />
-              <span>Events</span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/resources"
-              className="flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
-            >
-              <Book size={20} />
-              <span>Resources</span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/community"
-              className="flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
-            >
-              <Users size={20} />
-              <span>Community</span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/wishlist"
-              className="flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
-            >
-              <Star size={20} />
-              <span>Wishlist</span>
-            </Link>
-          </li>
+          <SidebarLink to="/" icon={<FiHome size={20} />} label="Home" />
+          <SidebarLink
+            to="/events"
+            icon={<FiCalendar size={20} />}
+            label="Events"
+          />
+          <SidebarLink
+            to="/resources"
+            icon={<FiBook size={20} />}
+            label="Resources"
+          />
+          <SidebarLink
+            to="/community"
+            icon={<FiUsers size={20} />}
+            label="Community"
+          />
+          <SidebarLink
+            to="/wishlist"
+            icon={<FiStar size={20} />}
+            label="Wishlist"
+          />
           {user && (
-            <li>
-              <Link
-                to="/profile"
-                className="flex items-center space-x-2 p-2 hover:bg-gray-700 rounded"
-              >
-                <Settings size={20} />
-                <span>Profile</span>
-              </Link>
-            </li>
+            <SidebarLink
+              to="/profile"
+              icon={<FiSettings size={20} />}
+              label="Profile"
+            />
           )}
         </ul>
       </nav>
     </aside>
   );
 };
+
+const SidebarLink: React.FC<{
+  to: string;
+  icon: React.ReactNode;
+  label: string;
+}> = ({ to, icon, label }) => (
+  <li>
+    <Link
+      to={to}
+      className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+    >
+      {icon}
+      <span>{label}</span>
+    </Link>
+  </li>
+);
 
 export default Sidebar;
