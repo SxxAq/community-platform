@@ -1,4 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { User } from "lucide-react";
+
+const dummyUsers = [
+  { id: "1", username: "JohnDoe", isOnline: true },
+  { id: "2", username: "DevUser", isOnline: true },
+  { id: "3", username: "CodeMaster", isOnline: false },
+  { id: "4", username: "Designer123", isOnline: true },
+  { id: "5", username: "DataNinja", isOnline: false },
+];
 
 interface User {
   id: string;
@@ -7,56 +16,44 @@ interface User {
 }
 
 const UserPresence: React.FC = () => {
-  const [users, setUsers] = useState<User[]>([]);
-
-  //useEffect(() => {
-  //  // Fetch initial user list
-  //  const fetchUsers = async () => {
-  //    // Replace with your actual API call
-  //    const response = await fetch("/api/users");
-  //    const data = await response.json();
-  //    setUsers(data);
-  //  };
-  //
-  //  fetchUsers();
-  //
-  //  // Set up WebSocket connection for real-time updates
-  //  const ws = new WebSocket();
-  //  ws.onmessage = (event) => {
-  //    const { userId, isOnline } = JSON.parse(event.data);
-  //    setUsers((prevUsers) =>
-  //      prevUsers.map((user) =>
-  //        user.id === userId ? { ...user, isOnline } : user,
-  //      ),
-  //    );
-  //  };
-  //
-  //  return () => {
-  //    ws.close();
-  //  };
-  //}, []);
+  const [users] = React.useState<User[]>(dummyUsers);
+  const onlineCount = users.filter((user) => user.isOnline).length;
 
   return (
-    <div className="bg-card text-card-foreground rounded-lg shadow p-4">
-      <h3 className="text-lg font-semibold mb-4">Online Users</h3>
-      <ul className="space-y-2">
+    <div className="space-y-6">
+      <div className="bg-primary/5 rounded-lg p-4 flex items-center justify-between">
+        <span className="text-sm font-medium text-primary">Online Now</span>
+        <span className="bg-primary text-primary-foreground text-sm font-medium px-2.5 py-0.5 rounded-full">
+          {onlineCount}
+        </span>
+      </div>
+
+      <div className="space-y-2">
         {users.map((user) => (
-          <li key={user.id} className="flex items-center">
+          <div
+            key={user.id}
+            className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors"
+          >
+            <div className="relative">
+              <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center">
+                <User className="w-4 h-4 text-secondary-foreground" />
+              </div>
+              <span
+                className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-background ${
+                  user.isOnline ? "bg-green-500" : "bg-muted"
+                }`}
+              />
+            </div>
             <span
-              className={`w-3 h-3 rounded-full mr-2 ${
-                user.isOnline ? "bg-green-500" : "bg-muted"
-              }`}
-            ></span>
-            <span
-              className={
+              className={`text-sm font-medium ${
                 user.isOnline ? "text-foreground" : "text-muted-foreground"
-              }
+              }`}
             >
               {user.username}
             </span>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

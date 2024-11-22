@@ -6,30 +6,28 @@ import UserPresence from "../components/community/UserPresence";
 const Community: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
-        Community
-      </h1>
+      <h1 className="text-3xl font-bold mb-6 text-foreground">Community Hub</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-8">
-          <div>
-            <h2 className="text-2xl font-semibold mb-4 text-gray-700 dark:text-gray-200">
-              Chat
+          <section>
+            <h2 className="text-2xl font-semibold mb-4 text-foreground">
+              Real-time Chat
             </h2>
             <Chat />
-          </div>
-          <div>
-            <h2 className="text-2xl font-semibold mb-4 text-gray-700 dark:text-gray-200">
-              Q&A
+          </section>
+          <section>
+            <h2 className="text-2xl font-semibold mb-4 text-foreground">
+              Community Q&A
             </h2>
             <QASection />
-          </div>
+          </section>
         </div>
-        <div>
-          <h2 className="text-2xl font-semibold mb-4 text-gray-700 dark:text-gray-200">
-            Online Users
+        <aside>
+          <h2 className="text-2xl font-semibold mb-4 text-foreground">
+            Community Pulse
           </h2>
           <UserPresence />
-        </div>
+        </aside>
       </div>
     </div>
   );

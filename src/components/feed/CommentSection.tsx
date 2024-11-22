@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
+import { Send } from "lucide-react";
+import { formatDistanceToNow } from "date-fns";
 
 interface Comment {
   id: string;
@@ -19,9 +21,22 @@ const CommentSection: React.FC<CommentSectionProps> = ({ postId }) => {
 
   useEffect(() => {
     const fetchComments = async () => {
-      const response = await fetch(`/api/posts/${postId}/comments`);
-      const data = await response.json();
-      setComments(data);
+      // Simulating API call
+      const mockComments: Comment[] = [
+        {
+          id: "1",
+          author: "Alice",
+          content: "Great post!",
+          createdAt: new Date().toISOString(),
+        },
+        {
+          id: "2",
+          author: "Bob",
+          content: "Thanks for sharing!",
+          createdAt: new Date(Date.now() - 3600000).toISOString(),
+        },
+      ];
+      setComments(mockComments);
     };
 
     fetchComments();
@@ -29,50 +44,61 @@ const CommentSection: React.FC<CommentSectionProps> = ({ postId }) => {
 
   const handleSubmitComment = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user) return;
+    if (!user || !newComment.trim()) return;
 
-    const response = await fetch(`/api/posts/${postId}/comments`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ content: newComment }),
-    });
+    // Simulating API call
+    const newCommentData: Comment = {
+      id: Date.now().toString(),
+      author: user.username,
+      content: newComment,
+      createdAt: new Date().toISOString(),
+    };
 
-    if (response.ok) {
-      const newCommentData = await response.json();
-      setComments([...comments, newCommentData]);
-      setNewComment("");
-    }
+    setComments([...comments, newCommentData]);
+    setNewComment("");
   };
 
   return (
     <div className="mt-6">
-      <h3 className="text-lg font-semibold mb-4 text-gray-800">Comments</h3>
+      <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">
+        Comments
+      </h3>
       <div className="space-y-4">
         {comments.map((comment) => (
-          <div key={comment.id} className="bg-gray-50 p-4 rounded-lg">
-            <p className="font-semibold text-gray-800">{comment.author}</p>
-            <p className="text-gray-600 mt-1">{comment.content}</p>
-            <p className="text-xs text-gray-400 mt-2">
-              {new Date(comment.createdAt).toLocaleString()}
+          <div key={comment.id} className="bg-muted p-4 rounded-lg">
+            <div className="flex justify-between items-start">
+              <p className="font-semibold text-gray-800 dark:text-gray-200">
+                {comment.author}
+              </p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                {formatDistanceToNow(new Date(comment.createdAt), {
+                  addSuffix: true,
+                })}
+              </p>
+            </div>
+            <p className="text-gray-700 dark:text-gray-300 mt-1">
+              {comment.content}
             </p>
           </div>
         ))}
       </div>
       {user && (
         <form onSubmit={handleSubmitComment} className="mt-6">
-          <textarea
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Write a comment..."
-            rows={3}
-          />
-          <button
-            type="submit"
-            className="mt-2 py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >
-            Post Comment
-          </button>
+          <div className="flex items-center">
+            <input
+              type="text"
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              className="flex-grow px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+              placeholder="Write a comment..."
+            />
+            <button
+              type="submit"
+              className="px-4 py-2 bg-primary text-white rounded-r-md hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+            >
+              <Send className="h-5 w-5" />
+            </button>
+          </div>
         </form>
       )}
     </div>

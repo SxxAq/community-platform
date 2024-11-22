@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import WishlistItem from "../components/wishlist/WishlistItem";
 import WishlistVoting from "../components/wishlist/WishlistVoting";
+import { Plus } from "lucide-react";
 
 const Wishlist: React.FC = () => {
   const [wishlistItems, setWishlistItems] = useState([
@@ -34,14 +35,20 @@ const Wishlist: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
-        Feature Wishlist
-      </h1>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100">
+          Feature Wishlist
+        </h1>
+        <button className="bg-primary text-primary-foreground px-4 py-2 rounded-lg flex items-center hover:bg-primary/90 transition-colors duration-200">
+          <Plus className="mr-2" size={20} />
+          Add Wish
+        </button>
+      </div>
       <div className="space-y-6">
         {wishlistItems.map((item) => (
           <div
             key={item.id}
-            className="flex items-center space-x-4 bg-white dark:bg-gray-800 shadow rounded-lg p-6"
+            className="flex items-center space-x-4 bg-card text-card-foreground shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow duration-300"
           >
             <WishlistVoting
               itemId={item.id}

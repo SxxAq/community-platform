@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { User, Mail, Shield } from "lucide-react";
 
 interface User {
   id: string;
@@ -32,33 +33,52 @@ const UserList: React.FC = () => {
     fetchUsers();
   }, []);
 
-  if (isLoading) return <div className="text-center p-4">Loading...</div>;
+  if (isLoading)
+    return (
+      <div className="text-center p-4 text-lg text-muted-foreground">
+        Loading...
+      </div>
+    );
   if (error)
-    return <div className="text-center text-red-500 p-4">Error: {error}</div>;
+    return (
+      <div className="text-center p-4 text-lg text-destructive">
+        Error: {error}
+      </div>
+    );
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">User List</h2>
-      <ul className="bg-white shadow-md rounded-lg overflow-hidden">
+      <h2 className="text-3xl font-bold mb-8 text-gray-800 dark:text-gray-100">
+        User List
+      </h2>
+      <ul className="bg-card text-card-foreground shadow-lg rounded-lg overflow-hidden">
         {users.map((user) => (
-          <li
-            key={user.id}
-            className="border-b border-gray-200 last:border-b-0"
-          >
+          <li key={user.id} className="border-b border-border last:border-b-0">
             <Link
               to={`/users/${user.id}`}
-              className="block hover:bg-gray-50 transition duration-150 ease-in-out"
+              className="block hover:bg-muted/50 transition duration-150 ease-in-out p-4"
             >
-              <div className="px-6 py-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-lg font-medium text-blue-600">
-                    {user.username}
-                  </span>
-                  <span className="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-4">
+                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                    <User className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-lg font-medium text-foreground">
+                      {user.username}
+                    </p>
+                    <p className="text-sm text-muted-foreground flex items-center">
+                      <Mail className="w-4 h-4 mr-1" />
+                      {user.email}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center">
+                  <span className="px-3 py-1 text-xs font-semibold rounded-full bg-secondary/10 text-secondary flex items-center">
+                    <Shield className="w-4 h-4 mr-1" />
                     {user.role}
                   </span>
                 </div>
-                <p className="mt-1 text-sm text-gray-600">{user.email}</p>
               </div>
             </Link>
           </li>

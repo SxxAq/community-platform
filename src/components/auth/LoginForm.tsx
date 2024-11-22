@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import { Eye, EyeOff, LogIn } from "lucide-react";
 
 interface LoginFormData {
   email: string;
@@ -10,6 +11,7 @@ interface LoginFormData {
 
 const LoginForm: React.FC = () => {
   const [error, setError] = useState<string>("");
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -28,79 +30,85 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-foreground">
-            Sign in to your account
-          </h2>
+    <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+      {error && (
+        <div className="bg-destructive/10 text-destructive p-4 rounded-md">
+          {error}
         </div>
-        {error && (
-          <div className="rounded-md bg-destructive/10 p-4">
-            <div className="text-sm text-destructive">{error}</div>
-          </div>
+      )}
+      <div>
+        <label
+          htmlFor="email"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+        >
+          Email address
+        </label>
+        <input
+          id="email"
+          type="email"
+          autoComplete="email"
+          required
+          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+          {...register("email", { required: "Email is required" })}
+        />
+        {errors.email && (
+          <p className="mt-1 text-sm text-destructive">
+            {errors.email.message}
+          </p>
         )}
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label htmlFor="email-address" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="email-address"
-                type="email"
-                autoComplete="email"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-input bg-background text-foreground placeholder-muted-foreground rounded-t-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
-                placeholder="Email address"
-                {...register("email", { required: "Email is required" })}
-              />
-              {errors.email && (
-                <p className="mt-2 text-sm text-destructive">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-input bg-background text-foreground placeholder-muted-foreground rounded-b-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
-                placeholder="Password"
-                {...register("password", { required: "Password is required" })}
-              />
-              {errors.password && (
-                <p className="mt-2 text-sm text-destructive">
-                  {errors.password.message}
-                </p>
-              )}
-            </div>
-          </div>
-
-          <div>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-primary-foreground bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-            >
-              Sign in
-            </button>
-          </div>
-        </form>
-        <div className="text-center">
-          <Link
-            to="/register"
-            className="font-medium text-primary hover:text-primary/90"
-          >
-            Don't have an account? Sign up
-          </Link>
-        </div>
       </div>
-    </div>
+      <div>
+        <label
+          htmlFor="password"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+        >
+          Password
+        </label>
+        <div className="relative">
+          <input
+            id="password"
+            type={showPassword ? "text" : "password"}
+            autoComplete="current-password"
+            required
+            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+            {...register("password", { required: "Password is required" })}
+          />
+          <button
+            type="button"
+            className="absolute inset-y-0 right-0 pr-3 flex items-center"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? (
+              <EyeOff className="h-5 w-5 text-gray-400" />
+            ) : (
+              <Eye className="h-5 w-5 text-gray-400" />
+            )}
+          </button>
+        </div>
+        {errors.password && (
+          <p className="mt-1 text-sm text-destructive">
+            {errors.password.message}
+          </p>
+        )}
+      </div>
+      <div>
+        <button
+          type="submit"
+          className="w-full flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+        >
+          <LogIn className="mr-2" size={20} />
+          Sign in
+        </button>
+      </div>
+      <div className="text-center">
+        <Link
+          to="/register"
+          className="font-medium text-primary hover:text-primary/90"
+        >
+          Don't have an account? Sign up
+        </Link>
+      </div>
+    </form>
   );
 };
 
