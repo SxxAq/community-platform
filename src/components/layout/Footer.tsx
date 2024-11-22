@@ -4,7 +4,7 @@ import { FiTwitter, FiFacebook, FiLinkedin, FiInstagram } from "react-icons/fi";
 
 const Footer: React.FC = () => {
   return (
-    <footer className=" shadow-2xl bg-gray-700 text-gray-100 dark:text-gray-300 p-8">
+    <footer className=" shadow-2xl bg-gray-600 dark:bg-gray-800 text-gray-100 dark:text-gray-300 p-8">
       <div className="container mx-auto">
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-1/4 mb-6 md:mb-0">
@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
               <input
                 type="email"
                 placeholder="Your email"
-                className="p-2 text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-700 rounded-l-md w-full focus:outline-none"
+                className="p-2 text-gray-800 dark:text-gray-200 bg-white rounded-l-md w-full focus:outline-none"
               />
               <button
                 type="submit"

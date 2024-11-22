@@ -15,8 +15,8 @@ const Profile: React.FC = () => {
         <button
           className={`flex items-center px-6 py-3 rounded-lg transition duration-300 text-lg font-medium ${
             activeTab === "profile"
-              ? "bg-primary text-primary-foreground"
-              : "bg-secondary text-secondary-foreground"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300"
           }`}
           onClick={() => setActiveTab("profile")}
         >
@@ -26,8 +26,8 @@ const Profile: React.FC = () => {
         <button
           className={`flex items-center px-6 py-3 rounded-lg transition duration-300 text-lg font-medium ${
             activeTab === "settings"
-              ? "bg-primary text-primary-foreground"
-              : "bg-secondary text-secondary-foreground"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300"
           }`}
           onClick={() => setActiveTab("settings")}
         >
@@ -35,7 +35,7 @@ const Profile: React.FC = () => {
           Settings
         </button>
       </div>
-      <div className="bg-card text-card-foreground shadow-lg rounded-lg p-6">
+      <div className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-lg p-6">
         {activeTab === "profile" ? <UserProfile /> : <UserSettings />}
       </div>
     </div>

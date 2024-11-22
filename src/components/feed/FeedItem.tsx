@@ -25,7 +25,7 @@ const FeedItem: React.FC<FeedItemProps> = ({
   const [showComments, setShowComments] = useState(false);
 
   return (
-    <div className="bg-card text-card-foreground shadow-lg rounded-lg p-6 mb-6">
+    <div className="bg-card dark:bg-gray-800 border text-card-foreground shadow-lg rounded-lg p-6 mb-6">
       <div className="flex items-center mb-4">
         <img
           className="h-12 w-12 rounded-full mr-4 border-2 border-primary"

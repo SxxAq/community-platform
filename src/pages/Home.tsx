@@ -27,9 +27,12 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-8 text-gray-800 dark:text-gray-100">
-        Welcome to XpertBuddy
+    <div className="container mx-auto px-4 py-8 ">
+      <h1 className="text-4xl font-bold mb-8 text-gray-800 dark:text-gray-100 text-center">
+        Welcome to{" "}
+        <span className="bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+          XpertBuddy
+        </span>
       </h1>
       {user ? (
         <div>
@@ -45,7 +48,7 @@ const Home: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8">
+        <div className="z-50 rounded-lg p-8 flex flex-col items-center justify-between">
           <h2 className="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-100">
             Join Our Learning Community
           </h2>
@@ -53,17 +56,17 @@ const Home: React.FC = () => {
             Connect with fellow learners, access valuable resources, and
             participate in exciting events!
           </p>
-          <div className="space-x-6">
+          <div className="flex gap-2">
             <Link
               to="/register"
-              className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg transition duration-300 inline-flex items-center text-lg font-medium"
+              className="bg-green-500 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg transition duration-300 inline-flex items-center text-lg font-medium"
             >
               <UserPlus className="mr-2" size={24} />
               Sign Up
             </Link>
             <Link
               to="/login"
-              className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition duration-300 inline-flex items-center text-lg font-medium"
+              className="bg-blue-500 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition duration-300 inline-flex items-center text-lg font-medium"
             >
               <LogIn className="mr-2" size={24} />
               Log In

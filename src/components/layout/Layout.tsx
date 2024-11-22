@@ -11,13 +11,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 gap-2">
       <Header
         toggleSidebar={() => setSidebarOpen(!sidebarOpen)}
-        className="mb-4 shadow-sm"
+        className=" shadow-sm"
       />
 
-      <div className="flex flex-grow flex-col md:flex-row">
+      <div className="flex flex-grow flex-col gap-2 md:flex-row">
         {/* Sidebar */}
         <Sidebar
           isOpen={sidebarOpen}

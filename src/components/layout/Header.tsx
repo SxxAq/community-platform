@@ -29,7 +29,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, className }) => {
             </button>
             <Link
               to="/"
-              className="text-2xl font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+              className="text-2xl font-bold bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent transition-colors"
             >
               XpertBuddy
             </Link>

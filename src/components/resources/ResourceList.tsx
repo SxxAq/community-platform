@@ -1,87 +1,108 @@
 import React, { useState } from "react";
-import { useResource } from "../../hooks/useResource";
-import ResourceCard from "./ResourceCard";
-import { Search, Filter } from "lucide-react";
-
+import ResourceCard from "./ResourceCard.tsx";
+// Define the structure of a resource
 interface Resource {
   id: string;
   title: string;
-  category: string;
   description: string;
+  category: string;
   author: string;
   rating: number;
   downloads: number;
 }
 
-const ResourceList: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const { resources, isLoading, error } = useResource();
+// Dummy data for resources
+const dummyResources: Resource[] = [
+  {
+    id: "1",
+    title: "Learn React",
+    description: "A comprehensive guide to learning React.",
+    category: "React",
+    author: "John Doe",
+    rating: 4.5,
+    downloads: 1200,
+  },
+  {
+    id: "2",
+    title: "Master JavaScript",
+    description: "In-depth JavaScript tutorials for all levels.",
+    category: "JavaScript",
+    author: "Jane Smith",
+    rating: 4.7,
+    downloads: 980,
+  },
+  {
+    id: "3",
+    title: "Python for Data Science",
+    description: "Python programming for data analysis and machine learning.",
+    category: "Python",
+    author: "Mark Lee",
+    rating: 4.8,
+    downloads: 1450,
+  },
+];
 
-  const filteredResources = resources.filter((resource: Resource) => {
+// ResourceList component that uses the dummy data and applies filtering logic
+const ResourceList: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+
+  // Filter resources based on search term and category
+  const filteredResources = dummyResources.filter((resource: Resource) => {
     return (
       resource.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
       (selectedCategory === "" || resource.category === selectedCategory)
     );
   });
 
-  if (isLoading)
-    return (
-      <div className="text-center text-lg text-foreground">Loading...</div>
-    );
-  if (error)
-    return (
-      <div className="text-center text-lg text-destructive">Error: {error}</div>
-    );
-
   return (
-    <div className="space-y-6">
-      <div className="flex space-x-4">
-        <div className="relative flex-grow">
+    <div className="container mx-auto p-4">
+      {/* Search and Category Filter */}
+      <div className="flex justify-end mb-4">
+        {/* <div className="w-full max-w-xs">
           <input
             type="text"
-            placeholder="Search resources..."
+            placeholder="Search resources"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 rounded-lg border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full p-2 border rounded-lg"
           />
-          <Search
-            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground"
-            size={20}
-          />
-        </div>
-        <div className="relative">
+        </div>*/}
+        <div className="w-full max-w-xs ml-4">
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="appearance-none w-full pl-10 pr-8 py-2 rounded-lg border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full p-2 border rounded-lg text-gray-800"
           >
             <option value="">All Categories</option>
             <option value="React">React</option>
             <option value="JavaScript">JavaScript</option>
             <option value="Python">Python</option>
-            <option value="Machine Learning">Machine Learning</option>
           </select>
-          <Filter
-            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground"
-            size={20}
-          />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredResources.map((resource: Resource) => (
-          <ResourceCard
-            key={resource.id}
-            {...resource}
-            onDownload={() =>
-              console.log(`Downloading resource ${resource.id}`)
-            }
-            onBookmark={() =>
-              console.log(`Bookmarking resource ${resource.id}`)
-            }
-          />
-        ))}
-      </div>
+
+      {/* Display filtered resources */}
+      {filteredResources.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredResources.map((resource) => (
+            <ResourceCard
+              key={resource.id}
+              {...resource}
+              onDownload={() =>
+                console.log(`Downloading resource ${resource.id}`)
+              }
+              onBookmark={() =>
+                console.log(`Bookmarking resource ${resource.id}`)
+              }
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="text-center text-lg text-gray-500">
+          No resources found
+        </div>
+      )}
     </div>
   );
 };
