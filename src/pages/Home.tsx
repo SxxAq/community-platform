@@ -6,7 +6,6 @@ import { UserPlus, LogIn } from "lucide-react";
 
 const Home: React.FC = () => {
   const { user } = useAuth();
-
   // Mock data for feed items
   const feedItems = [
     {
@@ -36,8 +35,8 @@ const Home: React.FC = () => {
         <div>
           <p className="mb-6 text-xl text-gray-600 dark:text-gray-300">
             Hello,{" "}
-            <span className="font-semibold text-primary">{user.username}</span>!
-            Here's what's new in your community:
+            <span className="font-semibold text-blue-600">{user.username}</span>
+            ! Here's what's new in your community:
           </p>
           <div className="space-y-8">
             {feedItems.map((item) => (
@@ -46,7 +45,7 @@ const Home: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div className="bg-card text-card-foreground shadow-lg rounded-lg p-8">
+        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8">
           <h2 className="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-100">
             Join Our Learning Community
           </h2>
@@ -57,14 +56,14 @@ const Home: React.FC = () => {
           <div className="space-x-6">
             <Link
               to="/register"
-              className="bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition duration-300 inline-flex items-center text-lg font-medium"
+              className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg transition duration-300 inline-flex items-center text-lg font-medium"
             >
               <UserPlus className="mr-2" size={24} />
               Sign Up
             </Link>
             <Link
               to="/login"
-              className="bg-secondary text-secondary-foreground px-6 py-3 rounded-lg hover:bg-secondary/90 transition duration-300 inline-flex items-center text-lg font-medium"
+              className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition duration-300 inline-flex items-center text-lg font-medium"
             >
               <LogIn className="mr-2" size={24} />
               Log In

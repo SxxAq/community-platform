@@ -57,7 +57,7 @@ const QASection: React.FC = () => {
       {user && (
         <form
           onSubmit={handleSubmitQuestion}
-          className="space-y-4 bg-background p-6 rounded-lg border border-border"
+          className="space-y-4 bg-gray-800 p-6 rounded-lg border border-gray-700"
         >
           <div>
             <input
@@ -67,7 +67,7 @@ const QASection: React.FC = () => {
                 setNewQuestion({ ...newQuestion, title: e.target.value })
               }
               placeholder="What's your question?"
-              className="w-full px-4 py-2 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+              className="w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
               required
             />
           </div>
@@ -78,14 +78,14 @@ const QASection: React.FC = () => {
                 setNewQuestion({ ...newQuestion, content: e.target.value })
               }
               placeholder="Provide more details about your question..."
-              className="w-full px-4 py-2 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm min-h-[100px]"
+              className="w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm min-h-[100px]"
               required
             />
           </div>
           <div className="flex justify-end">
             <button
               type="submit"
-              className="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-colors text-sm font-medium"
+              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors text-sm font-medium"
             >
               Post Question
             </button>
@@ -97,12 +97,12 @@ const QASection: React.FC = () => {
         {questions.map((question) => (
           <div
             key={question.id}
-            className="bg-background border border-border rounded-lg p-6 transition-shadow hover:shadow-md"
+            className="bg-gray-800 border border-gray-700 rounded-lg p-6 transition-shadow hover:shadow-lg"
           >
-            <h3 className="text-xl font-semibold mb-2 text-foreground">
+            <h3 className="text-xl font-semibold mb-2 text-gray-100">
               {question.title}
             </h3>
-            <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
+            <p className="text-gray-300 mb-4 text-sm leading-relaxed">
               {question.content}
             </p>
             <div className="flex items-center justify-between text-sm">
@@ -110,24 +110,24 @@ const QASection: React.FC = () => {
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => handleVote(question.id, true)}
-                    className="text-primary hover:text-primary/90 transition-colors"
+                    className="text-blue-500 hover:text-blue-400 transition-colors"
                   >
                     <ThumbsUp className="w-4 h-4" />
                   </button>
                   <span className="font-medium">{question.votes}</span>
                   <button
                     onClick={() => handleVote(question.id, false)}
-                    className="text-primary hover:text-primary/90 transition-colors"
+                    className="text-blue-500 hover:text-blue-400 transition-colors"
                   >
                     <ThumbsDown className="w-4 h-4" />
                   </button>
                 </div>
-                <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
+                <button className="flex items-center gap-1 text-gray-400 hover:text-blue-500 transition-colors">
                   <MessageCircle className="w-4 h-4" />
                   <span>{question.answers.length} answers</span>
                 </button>
               </div>
-              <div className="flex items-center gap-2 text-muted-foreground">
+              <div className="flex items-center gap-2 text-gray-400">
                 <span className="font-medium">{question.author}</span>
                 <span>•</span>
                 <span>{new Date(question.createdAt).toLocaleDateString()}</span>

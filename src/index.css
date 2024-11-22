@@ -5,53 +5,55 @@
 
 @layer base {
   :root {
-    --background: #f5f7fa; /* Soft off-white */
-    --foreground: #1a1f2e; /* Deep charcoal */
-    --card: #ffffff; /* Ultra-light gray-white */
-    --card-foreground: #2a2f3f;
-    --popover: #ffffff;
-    --popover-foreground: #2a2f3f;
-    --primary: #334aa2; /* Rich, deep blue */
-    --primary-foreground: #ffffff;
-    --secondary: #f1f1f3; /* Soft light gray */
-    --secondary-foreground: #334aa2;
-    --muted: #f8f9fa; /* Very light gray */
-    --muted-foreground: #6b7280;
-    --accent: #f3f4f6;
-    --accent-foreground: #334aa2;
-    --destructive: #dd3333; /* Sophisticated coral-red */
-    --destructive-foreground: #ffffff;
-    --border: #e5e7eb;
-    --input: #d1d5db;
-    --ring: #334aa2;
+    --background: 210 20% 98%; /* Soft off-white */
+    --foreground: 220 15% 15%; /* Deep charcoal */
+    --card: 210 20% 99%; /* Ultra-light gray-white */
+    --card-foreground: 220 15% 20%;
+    --popover: 210 20% 99%;
+    --popover-foreground: 220 15% 20%;
+    --primary: 230 50% 45%; /* Rich, deep blue */
+    --primary-foreground: 0 0% 100%; /* White for contrast */
+    --secondary: 230 12% 91%; /* Light gray with slight hue */
+    --secondary-foreground: 230 60% 40%; /* Muted dark gray for contrast */
+    --muted: 210 20% 95%; /* Very light gray */
+    --muted-foreground: 220 15% 45%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 230 50% 45%;
+    --destructive: 350 70% 50%; /* Sophisticated coral-red */
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 15% 85%;
+    --input: 220 15% 90%;
+    --ring: 230 50% 45%;
     --radius: 0.5rem;
+
     /* Modern chart colors */
-    --chart-1: #e67e22; /* Warm orange */
-    --chart-2: #1abc9c; /* Teal */
-    --chart-3: #3498db; /* Deep sky blue */
-    --chart-4: #9b59b6; /* Rich purple */
-    --chart-5: #e91e63; /* Vibrant magenta */
+    --chart-1: 25 80% 55%; /* Warm orange */
+    --chart-2: 170 60% 45%; /* Teal */
+    --chart-3: 210 70% 50%; /* Deep sky blue */
+    --chart-4: 290 60% 50%; /* Rich purple */
+    --chart-5: 340 70% 50%; /* Vibrant magenta */
   }
+
   .dark {
-    --background: #111827; /* Deep midnight blue-gray */
-    --foreground: #f9fafb; /* Soft off-white */
-    --card: #1f2937; /* Almost black with blue undertone */
-    --card-foreground: #f9fafb;
-    --popover: #1f2937;
-    --popover-foreground: #f9fafb;
-    --primary: #3b82f6; /* Bright, clear blue */
-    --primary-foreground: #111827;
-    --secondary: #1e293b; /* Dark slate */
-    --secondary-foreground: #3b82f6;
-    --muted: #111827; /* Slightly lighter than background */
-    --muted-foreground: #9ca3af;
-    --accent: #1e293b;
-    --accent-foreground: #3b82f6;
-    --destructive: #dc2626; /* Deep coral */
-    --destructive-foreground: #ffffff;
-    --border: #374151;
-    --input: #1f2937;
-    --ring: #3b82f6;
+    --background: 225 15% 12%; /* Deep midnight blue-gray */
+    --foreground: 210 20% 98%; /* Soft off-white */
+    --card: 225 15% 15%; /* Almost black with blue undertone */
+    --card-foreground: 210 20% 98%;
+    --popover: 225 15% 15%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 210 70% 60%; /* Bright, clear blue */
+    --primary-foreground: 0 0% 100%; /* White for clear contrast */
+    --secondary: 225 15% 22%; /* Darker, muted slate */
+    --secondary-foreground: 210 70% 60%; /* Lighter contrast for text */
+    --muted: 225 15% 18%; /* Slightly lighter than background */
+    --muted-foreground: 210 20% 75%;
+    --accent: 225 15% 20%;
+    --accent-foreground: 210 70% 60%;
+    --destructive: 350 70% 45%; /* Deep coral */
+    --destructive-foreground: 0 0% 100%;
+    --border: 225 15% 25%;
+    --input: 225 15% 22%;
+    --ring: 210 70% 60%;
     --radius: 0.5rem;
   }
 }

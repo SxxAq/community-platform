@@ -104,8 +104,8 @@ const Events: React.FC = () => {
         <button
           className={`flex items-center px-6 py-3 rounded-lg transition duration-300 text-lg font-medium ${
             viewMode === "list"
-              ? "bg-primary text-primary-foreground"
-              : "bg-secondary text-secondary-foreground"
+              ? "bg-blue-600 text-white hover:bg-blue-700"
+              : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
           }`}
           onClick={() => setViewMode("list")}
         >
@@ -115,8 +115,8 @@ const Events: React.FC = () => {
         <button
           className={`flex items-center px-6 py-3 rounded-lg transition duration-300 text-lg font-medium ${
             viewMode === "calendar"
-              ? "bg-primary text-primary-foreground"
-              : "bg-secondary text-secondary-foreground"
+              ? "bg-blue-600 text-white hover:bg-blue-700"
+              : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
           }`}
           onClick={() => setViewMode("calendar")}
         >
@@ -124,7 +124,7 @@ const Events: React.FC = () => {
           Calendar View
         </button>
       </div>
-      <div className="bg-card text-card-foreground shadow-lg rounded-lg p-6">
+      <div className="bg-white dark:bg-gray-800 rounded-lg p-6 overflow-x-auto">
         {viewMode === "list" ? (
           <EventList events={events} />
         ) : (

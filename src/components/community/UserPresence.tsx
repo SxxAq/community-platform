@@ -3,57 +3,31 @@ import { User } from "lucide-react";
 
 const dummyUsers = [
   { id: "1", username: "JohnDoe", isOnline: true },
-  { id: "2", username: "DevUser", isOnline: true },
-  { id: "3", username: "CodeMaster", isOnline: false },
-  { id: "4", username: "Designer123", isOnline: true },
-  { id: "5", username: "DataNinja", isOnline: false },
+  { id: "2", username: "JaneSmith", isOnline: false },
+  { id: "3", username: "DevUser", isOnline: true },
+  { id: "4", username: "Coder123", isOnline: false },
+  { id: "5", username: "OnlineGuy", isOnline: true },
 ];
 
-interface User {
-  id: string;
-  username: string;
-  isOnline: boolean;
-}
-
 const UserPresence: React.FC = () => {
-  const [users] = React.useState<User[]>(dummyUsers);
-  const onlineCount = users.filter((user) => user.isOnline).length;
-
   return (
-    <div className="space-y-6">
-      <div className="bg-primary/5 rounded-lg p-4 flex items-center justify-between">
-        <span className="text-sm font-medium text-primary">Online Now</span>
-        <span className="bg-primary text-primary-foreground text-sm font-medium px-2.5 py-0.5 rounded-full">
-          {onlineCount}
-        </span>
-      </div>
-
-      <div className="space-y-2">
-        {users.map((user) => (
-          <div
-            key={user.id}
-            className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors"
-          >
-            <div className="relative">
-              <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center">
-                <User className="w-4 h-4 text-secondary-foreground" />
-              </div>
-              <span
-                className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-background ${
-                  user.isOnline ? "bg-green-500" : "bg-muted"
-                }`}
-              />
-            </div>
-            <span
-              className={`text-sm font-medium ${
-                user.isOnline ? "text-foreground" : "text-muted-foreground"
+    <div className="bg-gray-800 text-gray-100 rounded-lg p-6 border border-gray-700">
+      {/* <h2 className="text-xl font-semibold mb-4">User Presence</h2> */}
+      <ul className="space-y-2">
+        {dummyUsers.map((user) => (
+          <li key={user.id} className="flex items-center gap-3">
+            <div
+              className={`w-3 h-3 rounded-full ${
+                user.isOnline ? "bg-green-500" : "bg-gray-500"
               }`}
-            >
+            ></div>
+            <span className="flex items-center gap-2">
+              <User className="w-4 h-4 text-gray-400" />
               {user.username}
             </span>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

@@ -27,6 +27,7 @@ const WishlistVoting: React.FC<WishlistVotingProps> = ({
         size="sm"
         onClick={() => handleVote("up")}
         aria-label="Vote up"
+        className="hover:bg-green-100 transition-colors duration-300"
       >
         <ChevronUp className="w-4 h-4" />
       </Button>
@@ -36,6 +37,7 @@ const WishlistVoting: React.FC<WishlistVotingProps> = ({
         size="sm"
         onClick={() => handleVote("down")}
         aria-label="Vote down"
+        className="hover:bg-red-100 transition-colors duration-300"
       >
         <ChevronDown className="w-4 h-4" />
       </Button>

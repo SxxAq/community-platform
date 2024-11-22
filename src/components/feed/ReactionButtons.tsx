@@ -24,7 +24,7 @@ const ReactionButtons: React.FC<ReactionButtonsProps> = ({
           liked ? "text-primary" : "text-gray-500 dark:text-gray-400"
         } hover:text-primary transition-colors duration-200`}
       >
-        <ThumbsUp className={`h-5 w-5 ${liked ? "fill-current" : ""}`} />
+        <ThumbsUp className={`h-5 w-5 ${liked ? "fill-blue-500" : ""}`} />
         <span className="font-medium">{likes + (liked ? 1 : 0)}</span>
       </button>
       <button className="flex items-center space-x-2 text-gray-500 dark:text-gray-400 hover:text-primary transition-colors duration-200">

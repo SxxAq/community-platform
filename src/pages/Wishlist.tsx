@@ -36,10 +36,10 @@ const Wishlist: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100">
+        <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
           Feature Wishlist
         </h1>
-        <button className="bg-primary text-primary-foreground px-4 py-2 rounded-lg flex items-center hover:bg-primary/90 transition-colors duration-200">
+        <button className="bg-blue-500 text-primary-foreground px-4 py-2 rounded-lg flex items-center hover:bg-primary/90 transition-colors duration-200">
           <Plus className="mr-2" size={20} />
           Add Wish
         </button>

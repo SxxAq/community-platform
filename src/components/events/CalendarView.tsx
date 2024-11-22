@@ -52,49 +52,51 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events }) => {
   };
 
   return (
-    <div className="bg-card text-card-foreground rounded-lg shadow-lg overflow-hidden">
-      <div className="flex items-center justify-between p-4 border-b border-border bg-muted">
-        <h2 className="text-xl font-semibold text-foreground">
+    <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden">
+      <div className="flex items-center justify-between p-4 border-b border-gray-300 dark:border-gray-700 bg-slate-100 dark:bg-slate-600">
+        <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
           {format(currentMonth, "MMMM yyyy")}
         </h2>
         <div className="flex space-x-2">
           <button
             onClick={prevMonth}
-            className="p-2 rounded-full hover:bg-muted-foreground/10 transition-colors duration-200"
+            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
             aria-label="Previous month"
           >
             <ChevronLeft size={20} />
           </button>
           <button
             onClick={nextMonth}
-            className="p-2 rounded-full hover:bg-muted-foreground/10 transition-colors duration-200"
+            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
             aria-label="Next month"
           >
             <ChevronRight size={20} />
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-7 gap-px bg-muted p-2">
+      <div className="grid grid-cols-7 gap-px bg-slate-200 dark:bg-slate-600 p-2">
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
           <div
             key={day}
-            className="bg-muted-foreground/5 text-muted-foreground text-center py-2 text-sm font-semibold"
+            className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-center py-2 text-sm font-semibold"
           >
             {day}
           </div>
         ))}
-        {monthDays.map((day, index) => (
+        {monthDays.map((day) => (
           <div
             key={day.toString()}
-            className={`bg-card p-1 h-24 overflow-y-auto ${
+            className={`bg-white dark:bg-gray-800 p-1 h-24 overflow-y-auto ${
               !isSameMonth(day, currentMonth)
-                ? "text-muted-foreground/50 bg-gray-50 dark:bg-gray-800"
+                ? "text-gray-400 dark:text-gray-600"
                 : isToday(day)
                   ? "bg-blue-50 dark:bg-blue-900 font-semibold"
-                  : `bg-${["pink", "purple", "indigo", "blue", "teal", "green", "yellow"][index % 7]}-50 dark:bg-${["pink", "purple", "indigo", "blue", "teal", "green", "yellow"][index % 7]}-900`
+                  : ""
             }`}
           >
-            <div className="font-medium text-sm mb-1">{format(day, "d")}</div>
+            <div className="font-medium text-sm mb-1 text-gray-800 dark:text-gray-200">
+              {format(day, "d")}
+            </div>
             {renderEvents(day)}
           </div>
         ))}
