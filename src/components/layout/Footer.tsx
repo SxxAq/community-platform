@@ -2,9 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FiTwitter, FiFacebook, FiLinkedin, FiInstagram } from "react-icons/fi";
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  className?: string;
+}
+
+const Footer: React.FC<FooterProps> = ({ className }) => {
   return (
-    <footer className=" shadow-2xl bg-gray-600 dark:bg-gray-800 text-gray-100 dark:text-gray-300 p-8">
+    <footer
+      className={`${className}shadow-2xl bg-gray-600 dark:bg-gray-800 text-gray-100 dark:text-gray-300 p-8`}
+    >
       <div className="container mx-auto">
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-1/4 mb-6 md:mb-0">

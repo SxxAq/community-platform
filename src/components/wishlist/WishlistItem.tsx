@@ -10,12 +10,10 @@ interface WishlistItemProps {
 }
 
 const WishlistItem: React.FC<WishlistItemProps> = ({
-  id,
   title,
   description,
   votes,
   status,
-  onVote,
 }) => {
   return (
     <div className="bg-white shadow-md rounded-lg p-6 mb-6">

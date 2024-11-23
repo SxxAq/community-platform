@@ -11,7 +11,7 @@ import Events from "./pages/Events";
 import Resources from "./pages/Resources";
 import Community from "./pages/Community";
 import Wishlist from "./pages/Wishlist";
-import PrivateRoute from "./components/auth/PrivateRoute";
+//import PrivateRoute from "./components/auth/PrivateRoute";
 import ErrorBoundary from "./components/common/ErrorBoundary";
 
 const App: React.FC = () => {

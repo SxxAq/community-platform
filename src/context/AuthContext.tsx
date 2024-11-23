@@ -29,7 +29,9 @@ const mockUsers: User[] = [
   },
 ];
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType | undefined>(
+  undefined,
+);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -42,7 +44,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     const foundUser = mockUsers.find((u) => u.email === email);
-    if (!foundUser) {
+    if (!foundUser || password !== "expectedPassword") {
+      // Mock password check
       throw new Error("Invalid credentials");
     }
 
@@ -52,12 +55,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setUser(foundUser);
   };
 
-  // Mock register function
-  const register = async (
-    username: string,
-    email: string,
-    password: string,
-  ) => {
+  const register = async (username: string, email: string) => {
     // Simulate API call delay
     await new Promise((resolve) => setTimeout(resolve, 500));
 
@@ -81,7 +79,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.setItem("token", token);
     setUser(newUser);
   };
-
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);

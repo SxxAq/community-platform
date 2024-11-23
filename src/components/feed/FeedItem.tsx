@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useAuth } from "../../context/AuthContext";
 import CommentSection from "./CommentSection";
 import ReactionButtons from "./ReactionButtons";
 import { formatDistanceToNow } from "date-fns";
@@ -21,7 +20,6 @@ const FeedItem: React.FC<FeedItemProps> = ({
   likes,
   comments,
 }) => {
-  const { user } = useAuth();
   const [showComments, setShowComments] = useState(false);
 
   return (

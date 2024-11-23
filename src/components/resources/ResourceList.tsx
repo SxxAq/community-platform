@@ -59,15 +59,15 @@ const ResourceList: React.FC = () => {
     <div className="container mx-auto p-4">
       {/* Search and Category Filter */}
       <div className="flex justify-end mb-4">
-        {/* <div className="w-full max-w-xs">
+        <div className="w-full max-w-xs">
           <input
             type="text"
-            placeholder="Search resources"
+            placeholder="Filter resources"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full p-2 border rounded-lg"
           />
-        </div>*/}
+        </div>
         <div className="w-full max-w-xs ml-4">
           <select
             value={selectedCategory}

@@ -32,7 +32,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </div>
 
       {/* Footer */}
-      <Footer className="bg-gray-100 dark:bg-gray-800 py-4 shadow-lg z-50 mt-auto" />
+      <Footer />
     </div>
   );
 };

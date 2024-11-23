@@ -10,7 +10,7 @@ interface SettingsFormData {
 }
 
 const UserSettings: React.FC = () => {
-  const { user, updateUser } = useAuth();
+  const { user } = useAuth();
   const {
     register,
     handleSubmit,
@@ -22,23 +22,23 @@ const UserSettings: React.FC = () => {
       notifications: true,
     },
   });
-
-  const onSubmit = async (data: SettingsFormData) => {
-    try {
-      await updateUser(data);
-      // Show success message
-    } catch (error) {
-      console.error("Failed to update settings:", error);
-      // Show error message
-    }
-  };
+  //const updateUser = (id: string) => {};
+  //const onSubmit = async (data: SettingsFormData) => {
+  //  try {
+  //    await updateUser(data);
+  //    // Show success message
+  //  } catch (error) {
+  //    console.error("Failed to update settings:", error);
+  //    // Show error message
+  //  }
+  //};
 
   return (
     <div className="max-w-md mx-auto mt-8 p-6 bg-white dark:bg-gray-800 shadow-md rounded-lg">
       <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-100">
         User Settings
       </h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={() => handleSubmit} className="space-y-4">
         <div>
           <label
             htmlFor="email"

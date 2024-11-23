@@ -94,7 +94,7 @@ const RegisterForm: React.FC = () => {
             type={showPassword ? "text" : "password"}
             autoComplete="new-password"
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+            className="w-full px-3 py-2 border text-gray-700 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
             {...register("password", {
               required: "Password is required",
               minLength: {
@@ -134,7 +134,7 @@ const RegisterForm: React.FC = () => {
             type={showConfirmPassword ? "text" : "password"}
             autoComplete="new-password"
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+            className="w-full px-3 py-2 border text-gray-700  border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
             {...register("confirmPassword", {
               required: "Please confirm your password",
               validate: (val: string) => {
